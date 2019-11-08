@@ -23,7 +23,7 @@ export const getPost = () => {
     };
 };
 //add post=smurf addPost
-const addPost = (post) => {
+export const addPost = (post) => {
     console.log('actions', post)
     return dispatch => {
         dispatch({ type: ADD_POST_LOADING });

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import PostForm from "./componentFiles/PostForm";
+// import PostForm from "./componentFiles/PostForm";
 import PostList from "./componentFiles/PostCard";
+import SmurfForm from "./componentFiles/SmurfForm";
 
 
 
@@ -14,7 +15,8 @@ class App extends Component {
         <div>Start inside of your `src/index.js` file!</div>
         <div>Have fun!</div>
         <PostList />
-        <PostForm />
+        {/* <PostForm /> */}
+        <SmurfForm />
 
       </div>
     );

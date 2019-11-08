@@ -49,7 +49,7 @@ function dataReducer(state = initialState, action) {
         case ADD_POST_LOADING:
             return {
                 ...state,
-                post: [...state.smurfs, action.payload],
+                post: [...state.post, action.payload],
                 isFetching: true,
                 error: null
             };
