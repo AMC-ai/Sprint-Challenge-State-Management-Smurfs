@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 //fetch
 export const FETCH_POST_LOADING = 'FETCH_POST_LOADING';
 export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
@@ -16,12 +17,14 @@ export const getPost = () => {
         axios
             .get('http://localhost:3333/smurfs')
             .then(res => {
-                // console.log(res)
+                console.log('Get Response', res)
                 dispatch({ type: FETCH_POST_SUCCESS, payload: res.data });
             })
-            .catch(err => dispatch({ type: FETCH_POST_FAILED, payload: err.res }));
+            .catch(err => dispatch({ type: FETCH_POST_FAILED, payload: err }));
     };
 };
+
+
 //add post=smurf addPost
 export const addPost = (post) => {
     console.log('actions', post)
@@ -38,4 +41,4 @@ export const addPost = (post) => {
             .catch(err => dispatch({ type: ADD_POST_FAILED, payload: err.res }));
     };
 };
-export default addPost;
+// export {addPost};

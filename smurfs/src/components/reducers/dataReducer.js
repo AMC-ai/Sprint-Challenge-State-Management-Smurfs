@@ -26,6 +26,7 @@ function dataReducer(state = initialState, action) {
                 error: null
             };
         case FETCH_POST_SUCCESS:
+            console.log(action.payload)
             return {
                 ...state,
                 post: action.payload,
