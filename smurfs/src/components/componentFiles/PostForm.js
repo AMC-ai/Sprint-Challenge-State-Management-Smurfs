@@ -1,80 +1,88 @@
-// import React, { useReducer, useState } from 'react';
-// import { formReducer, initialState } from '../reducers/formReducer';
+import React, { useReducer, useState } from 'react';
+import { formReducer, initialState } from '../reducers/formReducer';
 
-// //import action creators
+//import action creators?
+import addPost from '../actions/dataActions';
+import { connect } from "react-redux";
+// import { useDispatch } from 'react-redux';
 
-// //import { connect } from "react-redux";
+const PostForm = props => {
+    const [state, dispatch] = useReducer(formReducer, initialState);
+    // const dispatch = useDispatch();
 
+    const [newPost, setNewPost] = useState({
+        name: '',
+        age: '',
+        height: '',
+    });
 
-// const PostForm = props => {
-//     const [state, dispatch] = useReducer(formReducer, initialState);
+    function handleChange(e) {
+        setNewPost({
+            ...newPost,
+            [e.target.name]:
+                e.target.value
+        });
+    }
 
-//     const [newPost, setNewPost] = useState({
-//         name: '',
-//         age: '',
-//         height: '',
-//     });
+    //where is ADD POST coming from? do i need to add a post success?
 
-//     const handleChange = e => {
-//         setNewPost({
-//             ...newPost,
-//             [e.taget.name]:
-//                 e.target.value
-//         });
-//     }
+    const handleSubmit = e => {
+        e.preventDeafault();
+        console.log("is it working")
+        // dispatch({ type: 'ADD_POST_SUCCESS', payload: newPost });
+        // props.addPost(newPost);
+        // setNewPost({
+        //     name: '',
+        //     age: '',
+        //     height: '',
+        // });
+    }
 
-//     //where is ADD POST coming from? do i need to add a post success?
+    return (
+        <div className='smurf-form'>
+            <h2>Create Smurf</h2>
+            <form onSubmit={handleSubmit}>
+                <div className='smurf-name'>
+                    <input
+                        type="text"
+                        placeholder='Name'
+                        name='name'
+                        value={newPost.name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='smurf-age'>
+                    <input
+                        type="text"
+                        placeholder='age'
+                        name='age'
+                        value={newPost.age}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className='smurf-name'>
+                    <input
+                        type="text"
+                        placeholder='height in cm'
+                        name='height'
+                        value={newPost.height}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div>
+                    <button type='submit'>Submit</button>
+                </div>
+            </form>
+        </div>
+    );
 
-//     const handleSubmit = e => {
-//         e.preventDeafault();
-//         dispatch({ type: 'ADD_POST', payload: newPost });
-//         setNewPost({
-//             name: '',
-//             age: '',
-//             height: '',
-//         });
-//     }
-
-//     retrun (
-//         <div className='smurf-form'>
-//             <h2>Create Smurf</h2>
-//             <form onSubmit={handleSubmit}>
-//                 <div className='smurf-name'>
-//                     <input
-//                         type="text"
-//                         placeholder='Name'
-//                         name='name'
-//                         value={newPost.name}
-//                         onChange={(e) => handleChange(e)} />
-//                 </div>
-//                 <div className='smurf-age'>
-//                     <input
-//                         type="text"
-//                         placeholder='age'
-//                         name='age'
-//                         value={newPost.age}
-//                         onChange={(e) => handleChange(e)} />
-//                 </div>
-//                 <div className='smurf-name'>
-//                     <input
-//                         type="text"
-//                         placeholder='height in cm'
-//                         name='height'
-//                         value={newPost.height}
-//                         onChange={(e) => handleChange(e)} />
-//                 </div>
-//                 <div>
-//                     <button onClick={() => dispatch({ type: 'CREATE_POST' })}>Submit</button>
-//                 </div>
-//             </form>
-//         </div>
-//     )
-
-
-// }
+}
 // export default PostForm;
+//() => dispatch({ type: 'CREATE_POST' }) for button if it doesn't work?
+//onClick={handleSubmit}
 
-// export default connect(
-//     state => state,
-//     //action creators
-//   )(PostForm);
+export default connect(
+    state => state,
+    { addPost }
+    //action creators
+)(PostForm);

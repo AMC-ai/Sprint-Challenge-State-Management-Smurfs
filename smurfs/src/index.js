@@ -7,13 +7,12 @@ import App from "./components/App";
 import { createStore, applyMiddleware, } from 'redux';
 import { Provider } from 'react-redux';
 import dataReducer from './components/reducers/dataReducer';
-import formReducer from './components/reducers/formReducer';
+// import formReducer from './components/reducers/formReducer';
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
 const store = createStore(
     dataReducer,
-    formReducer,
     applyMiddleware(thunk, logger)
 );
 

@@ -1,21 +1,24 @@
-import React from "react";
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { getPost } from "../actions/index";
 import { useDispatch } from 'react-redux';
 import PostCard from './ActivityCard';
 
+
 //smurfs
-function PostList(props) {
-    console.log("PostList", props);
+const PostList = (props) {
+    console.log("Post-List", props);
     const dispatch = useDispatch();
     return (
         <>
             <button onClick={() => dispatch(getPost())}>Smurfing</button>
+
             {props.isFetching && <span role="img" alt="clock">⏰</span>}
+
             {props.error && <div>{props.error.message}</div>}
-            {props.post &&
-                props.post.map(post =>
-                    <PostCard className="smurf-card" key={post.name} PostList={post} />)}
+
+            {props.post.map(p =>
+                <PostCard className="smurf-card" key={p.name} PostList={p} />)}
 
         </>
     );
