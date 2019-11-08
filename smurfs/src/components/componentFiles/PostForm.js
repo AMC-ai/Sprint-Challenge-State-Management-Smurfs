@@ -1,5 +1,19 @@
-const AddPostForm = props => {
-    const [newPost, setNewPost] = useState({});
+import React, { useReducer, useState } from 'react';
+import { formReducer, initialState } from '../reducers/formReducer';
+
+//import action creators
+
+//import { connect } from "react-redux";
+
+
+const PostForm = props => {
+    const [state, dispatch] = useReducer(formReducer, initialState);
+
+    const [newPost, setNewPost] = useState({
+        name: '',
+        age: '',
+        height: '',
+    });
 
     const handleChange = e => {
         setNewPost({
@@ -9,9 +23,11 @@ const AddPostForm = props => {
         });
     }
 
+    //where is ADD POST coming from? do i need to add a post success?
+
     const handleSubmit = e => {
         e.preventDeafault();
-        props.addPost(newPost);
+        dispatch({ type: 'ADD_POST', payload: newPost });
         setNewPost({
             name: '',
             age: '',
@@ -23,14 +39,42 @@ const AddPostForm = props => {
         <div className='smurf-form'>
             <h2>Create Smurf</h2>
             <form onSubmit={handleSubmit}>
-                <input
-                    placeholder='Name'
-                    name='name'
-                    value={props.name}
-                    onChange={handleChange} />
+                <div className='smurf-name'>
+                    <input
+                        type="text"
+                        placeholder='Name'
+                        name='name'
+                        value={newPost.name}
+                        onChange={(e) => handleChange(e)} />
+                </div>
+                <div className='smurf-age'>
+                    <input
+                        type="text"
+                        placeholder='age'
+                        name='age'
+                        value={newPost.age}
+                        onChange={(e) => handleChange(e)} />
+                </div>
+                <div className='smurf-name'>
+                    <input
+                        type="text"
+                        placeholder='height in cm'
+                        name='height'
+                        value={newPost.height}
+                        onChange={(e) => handleChange(e)} />
+                </div>
+                <div>
+                    <button onClick={() => dispatch({ type: 'CREATE_POST' })}>Submit</button>
+                </div>
             </form>
         </div>
     )
 
 
 }
+export default PostForm;
+
+// export default connect(
+//     state => state,
+//     //action creators
+//   )(PostForm);

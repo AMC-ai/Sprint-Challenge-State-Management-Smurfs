@@ -1,4 +1,3 @@
-//smurfs
 import {
     FETCH_POST_LOADING,
     FETCH_POST_SUCCESS,

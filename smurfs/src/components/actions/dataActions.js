@@ -35,12 +35,3 @@ export const addPost = (post) => {
             .catch(err => dispatch({ type: ADD_POST_FAILED, payload: err.res }));
     };
 };
-
-// export const fetchPosts = () => (dispatch) => {
-//     axios
-//       .get('http://localhost:3333/smurfs')
-//       .then(res => 
-//       dispatch({ type: FETCH_POSTS_SUCCESS, payload: res.data})
-//       )
-//       .catch(err => dispatch({ type: FETCH_POSTS_FAIL, payload: err }));
-//   };
